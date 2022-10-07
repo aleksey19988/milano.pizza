@@ -12,7 +12,7 @@ foreach($readyPizzas as $readyPizza) {
     $readyPizzasList[$readyPizza->fk_pizza] = $readyPizza->number_of_pieces;
 }
 ?>
-<h3>Выберите действие выше &#10548;</h3>
+<h3>Список справочников выше &#10548;</h3>
 <h5>Для вашего удобства, наименования сортируются по алфавиту</h5>
 <p class="help-text">Редактируй количество доступных к продаже кусочков</p>
 <div class="row mt-4">
