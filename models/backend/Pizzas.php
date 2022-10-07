@@ -17,8 +17,8 @@ use Yii;
  * @property int $is_active Активен
  * @property string|null $image_path
  *
- * @property DDiameters $fkDiameter
- * @property ReadyPizzas[] $readyPizzas
+ * @property Diameters $fkDiameter
+ * @property ReadyPizzas[] $ready-pizzas
  */
 class Pizzas extends \yii\db\ActiveRecord
 {
@@ -39,7 +39,7 @@ class Pizzas extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['weight', 'fk_diameter', 'ingredients', 'price', 'piece_price', 'is_active'], 'integer'],
             [['title', 'image_path'], 'string', 'max' => 255],
-            [['fk_diameter'], 'exist', 'skipOnError' => true, 'targetClass' => DDiameters::class, 'targetAttribute' => ['fk_diameter' => 'id']],
+            [['fk_diameter'], 'exist', 'skipOnError' => true, 'targetClass' => Diameters::class, 'targetAttribute' => ['fk_diameter' => 'id']],
         ];
     }
 
@@ -68,7 +68,7 @@ class Pizzas extends \yii\db\ActiveRecord
      */
     public function getFkDiameter()
     {
-        return $this->hasOne(DDiameters::class, ['id' => 'fk_diameter']);
+        return $this->hasOne(Diameters::class, ['id' => 'fk_diameter']);
     }
 
     /**

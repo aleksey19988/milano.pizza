@@ -11,7 +11,7 @@ use Yii;
  * @property int $fk_pizza Наименование пиццы
  * @property int $number_of_pieces Количество кусочков
  *
- * @property DPizzas $fkPizza
+ * @property Pizzas $fkPizza
  */
 class ReadyPizzas extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,7 @@ class ReadyPizzas extends \yii\db\ActiveRecord
         return [
             [['fk_pizza', 'number_of_pieces'], 'required'],
             [['fk_pizza', 'number_of_pieces'], 'integer'],
-            [['fk_pizza'], 'exist', 'skipOnError' => true, 'targetClass' => DPizzas::class, 'targetAttribute' => ['fk_pizza' => 'id']],
+            [['fk_pizza'], 'exist', 'skipOnError' => true, 'targetClass' => Pizzas::class, 'targetAttribute' => ['fk_pizza' => 'id']],
         ];
     }
 
@@ -42,8 +42,9 @@ class ReadyPizzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fk_pizza' => 'Fk Pizza',
-            'number_of_pieces' => 'Number Of Pieces',
+            'fk_pizza' => 'Наименование пиццы',
+            'number_of_pieces' => 'Кол-во доступных кусочков',
+            'd_pizzas.title' => 'Наименование пиццы',
         ];
     }
 
@@ -52,8 +53,8 @@ class ReadyPizzas extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFkPizza()
+    public function getd_pizzas()
     {
-        return $this->hasOne(DPizzas::class, ['id' => 'fk_pizza']);
+        return $this->hasOne(Pizzas::class, ['id' => 'fk_pizza']);
     }
 }
