@@ -14,7 +14,7 @@ use Yii;
  * @property int|null $fk_order_status
  * @property int|null $total Сумма заказа
  *
- * @property DOrderStatuses $fkOrderStatus
+ * @property OrderStatuses $fkOrderStatus
  */
 class Orders extends \yii\db\ActiveRecord
 {
@@ -36,7 +36,7 @@ class Orders extends \yii\db\ActiveRecord
             [['created_at', 'closed_at'], 'safe'],
             [['fk_order_status', 'total'], 'integer'],
             [['order_content'], 'string', 'max' => 255],
-            [['fk_order_status'], 'exist', 'skipOnError' => true, 'targetClass' => DOrderStatuses::class, 'targetAttribute' => ['fk_order_status' => 'id']],
+            [['fk_order_status'], 'exist', 'skipOnError' => true, 'targetClass' => OrderStatuses::class, 'targetAttribute' => ['fk_order_status' => 'id']],
         ];
     }
 
@@ -47,11 +47,11 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'order_content' => 'Order Content',
-            'created_at' => 'Created At',
-            'closed_at' => 'Closed At',
-            'fk_order_status' => 'Fk Order Status',
-            'total' => 'Total',
+            'order_content' => 'Содержание заказа',
+            'created_at' => 'Дата и время создания заказа',
+            'closed_at' => 'Дата и время закрытия заказа',
+            'fk_order_status' => 'Статус заказа',
+            'total' => 'Сумма заказа, руб.',
         ];
     }
 
@@ -62,6 +62,6 @@ class Orders extends \yii\db\ActiveRecord
      */
     public function getFkOrderStatus()
     {
-        return $this->hasOne(DOrderStatuses::class, ['id' => 'fk_order_status']);
+        return $this->hasOne(OrderStatuses::class, ['id' => 'fk_order_status']);
     }
 }

@@ -17,7 +17,7 @@ use Yii;
  * @property int $is_active Активен
  *
  * @property Diameters $fkDiameter
- * @property ReadyPizzas[] $readyPizzas
+ * @property ReadyPizzas[] $ready-pizzas
  */
 class Pizzas extends \yii\db\ActiveRecord
 {

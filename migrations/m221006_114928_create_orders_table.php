@@ -17,7 +17,7 @@ class m221006_114928_create_orders_table extends Migration
             'order_content' => $this->string()->notNull()->comment('Содержание заказа'),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')->comment('Дата и время создания заказа'),
             'closed_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')->comment('Дата и время закрытия заказа'),
-            'fk_order_status' => $this->integer()->defaultValue(1),
+            'fk_order_status' => $this->integer()->defaultValue(1)->comment('Статус заказа'),
             'total' => $this->integer()->comment('Сумма заказа'),
         ]);
 

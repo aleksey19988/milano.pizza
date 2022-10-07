@@ -40,8 +40,8 @@ class Ingredients extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ingredient_name' => 'Ingredient Name',
-            'is_active' => 'Is Active',
+            'ingredient_name' => 'Наименование ингредиента',
+            'is_active' => 'Активен',
         ];
     }
 }
