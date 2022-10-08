@@ -50,14 +50,14 @@ class Pizzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'weight' => 'Weight',
-            'fk_diameter' => 'Fk Diameter',
-            'ingredients' => 'Ingredients',
-            'price' => 'Price',
-            'piece_price' => 'Piece Price',
-            'is_active' => 'Is Active',
-            'image_path' => 'Image Path',
+            'title' => 'Название',
+            'weight' => 'Вес, грамм',
+            'fk_diameter' => 'Диаметр (см)',
+            'ingredients' => 'Ингредиенты',
+            'price' => 'Стоимость, руб.',
+            'piece_price' => 'Стоимость кусочка, руб.',
+            'is_active' => 'Активен',
+            'image_path' => 'Расположение изображения',
         ];
     }
 
@@ -66,7 +66,7 @@ class Pizzas extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFkDiameter()
+    public function getd_diameters()
     {
         return $this->hasOne(Diameters::class, ['id' => 'fk_diameter']);
     }
