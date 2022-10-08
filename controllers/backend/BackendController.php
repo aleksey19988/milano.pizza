@@ -70,8 +70,7 @@ class BackendController extends Controller
             ->all();
         $readyPizzas = ReadyPizzas::find()
             ->all();
-        $model = new ReadyPizzas();
-        return $this->render('index', compact('pizzas', 'readyPizzas', 'model'));
+        return $this->render('index', compact('pizzas', 'readyPizzas'));
     }
 
     public function actionAbout()
