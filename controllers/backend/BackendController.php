@@ -5,6 +5,7 @@ namespace app\controllers\backend;
 use app\models\Pizzas;
 use app\models\ReadyPizzas;
 use Yii;
+use yii\base\BaseObject;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -70,7 +71,8 @@ class BackendController extends Controller
             ->all();
         $readyPizzas = ReadyPizzas::find()
             ->all();
-        return $this->render('index', compact('pizzas', 'readyPizzas'));
+        $model = new ReadyPizzas();
+        return $this->render('index', compact('pizzas', 'readyPizzas', 'model'));
     }
 
     public function actionAbout()
