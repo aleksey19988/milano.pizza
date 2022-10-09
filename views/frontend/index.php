@@ -16,7 +16,7 @@ $this->title = 'Готовая пицца';
                 <div class="card-body">
                     <h5 class="card-title"><?= $readyPizza->d_pizzas->title ?></h5>
                     <p class="card-text pizza-weight">Вес: <?= $readyPizza->d_pizzas->weight ?></p>
-                    <p class="card-text pizza-diameter">Диаметр: <?= $readyPizza->d_pizzas->d_diameters->diameter_value; ?> см</p>
+                    <p class="card-text pizza-diameter">Диаметр: <?= $readyPizza->d_pizzas->d_diameters['diameter_value'] . ' см'; ?></p>
                     <p class="card-text pizza-price">Целая: <?= $readyPizza->d_pizzas->price ?> &#8381;</p>
                     <p class="card-text piece-price">Кусочек: <?= $readyPizza->d_pizzas->piece_price ?> &#8381;</p>
                     <p class="card-text available-for-sale">Сколько кусочков сейчас можно купить: <?= $readyPizza->number_of_pieces ?></p>
