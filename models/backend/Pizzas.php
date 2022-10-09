@@ -66,7 +66,7 @@ class Pizzas extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFkDiameter()
+    public function getd_diameters()
     {
         return $this->hasOne(Diameters::class, ['id' => 'fk_diameter']);
     }

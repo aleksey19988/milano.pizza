@@ -41,6 +41,7 @@ AppAsset::register($this);
             ['label' => 'Ингредиенты', 'url' => ['/ingredients']],
             ['label' => 'Заказы', 'url' => ['/orders']],
             ['label' => 'Готовые пиццы', 'url' => ['/ready-pizzas']],
+            ['label' => 'Список пицц', 'url' => ['/pizzas']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
