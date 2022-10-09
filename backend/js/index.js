@@ -125,9 +125,13 @@ removePieceButtons.on('click', function(e) {
 
 addPizzaButton.on('click', function(e) {
     if (oldValuePieceCount === null) {
-        oldValuePieceCount = Number($(this).closest('div').prev().find('.pieces-count').text().trim().length);
+        oldValuePieceCount = Number($(this).closest('div').prev().find('.pieces-count').text().trim());
     } else if (oldValuePieceCount === newValuePieceCount) {
 
+    }
+
+    if (oldValuePieceCount === 0) {
+        $(this).parents('.card-body').find('.remove-piece-btn').prop('disabled', false);
     }
     newValuePieceCount = Number($(this).closest('div').prev().find('.pieces-count').text().trim()) + PIZZA_PIECES_COUNT;
     $(this).closest('div').prev().find('.pieces-count').text(newValuePieceCount);
