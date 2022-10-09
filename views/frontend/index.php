@@ -8,23 +8,35 @@
 $this->title = 'Готовая пицца';
 ?>
 <div class="site-index">
-
-    <div class="row row-cols-3">
+<!--    <h2 class="text-danger">Внимание! страница обновляется каждые 10 секунд!</h2>-->
+    <h3 class="text-center">Пиццы, которые вас ждут &#127829;</h3>
+    <table class="table mt-5  border-dark" id="table-content">
+        <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Кусочек</th>
+            <th scope="col">Сколько кусочков вас ждут</th>
+        </tr>
+        </thead>
+        <tbody>
         <?php foreach ($readyPizzas as $readyPizza): ?>
-            <div class="col">
-                <div class="card mt-4" style="width: 18rem;">
-<!--                    <img src="--><?//= empty($readyPizza->d_pizzas->image_path) ? '/web/images/pizza-plug.jpg' : $readyPizza->d_pizzas->image_path ?><!--" class="card-img-top" alt="...">-->
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $readyPizza->d_pizzas->title ?></h5>
-<!--                        <p class="card-text pizza-weight">Вес: --><?//= $readyPizza->d_pizzas->weight ?><!--</p>-->
-<!--                        <p class="card-text pizza-diameter">Диаметр: --><?//= $readyPizza->d_pizzas->d_diameters['diameter_value'] . ' см'; ?><!--</p>-->
-                        <p class="card-text pizza-price">Целая: <?= $readyPizza->d_pizzas->price ?> &#8381;</p>
-                        <p class="card-text piece-price">Кусочек: <?= $readyPizza->d_pizzas->piece_price ?> &#8381;</p>
-                        <p class="card-text available-for-sale">Сколько кусочков вас ждут: <?= $readyPizza->number_of_pieces ?></p>
-                    </div>
-                </div>
-            </div>
+            <?php if ($readyPizza->number_of_pieces > 0): ?>
+                <tr>
+                    <th class="card-title"><?= $readyPizza->d_pizzas->title ?></th>
+                    <td class="card-text pizza-price"> <?= $readyPizza->d_pizzas->price ?> &#8381;</td>
+                    <td class="card-text piece-price"><?= $readyPizza->d_pizzas->piece_price ?> &#8381;</td>
+                    <td class="card-text available-for-sale"><?= $readyPizza->number_of_pieces ?></td>
+                </tr>
+            <?php endif; ?>
         <?php endforeach; ?>
-
-    </div>
+        </tbody>
+    </table>
 </div>
+
+<script type="text/javascript">
+    setInterval("ajaxCall()", 5000);
+    let ajaxCall = function() {
+        $('#table-content').load(document.URL +  ' #table-content');
+    }
+</script>

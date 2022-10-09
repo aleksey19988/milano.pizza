@@ -8,7 +8,8 @@ use yii\helpers\Html;
 $this->title = 'Редактирование пиццы: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Список пицц', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновление';
+$model['fk_diameter'] -= 1;
 ?>
 <div class="pizzas-update">
 

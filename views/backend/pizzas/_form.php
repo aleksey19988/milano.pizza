@@ -1,5 +1,6 @@
 <?php
 
+use app\models\backend\Diameters;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'weight')->textInput() ?>
 
-    <?= $form->field($model, 'fk_diameter')->dropDownList(\app\models\backend\Diameters::find()->select(['diameter_value'])->column()) ?>
+    <?= $form->field($model, 'fk_diameter')->dropDownList(Diameters::find()->select(['diameter_value'])->column()) ?>
 
     <?= $form->field($model, 'ingredients')->textInput() ?>
 
