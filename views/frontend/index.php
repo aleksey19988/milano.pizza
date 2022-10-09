@@ -9,8 +9,8 @@ $this->title = 'Готовая пицца';
 ?>
 <div class="site-index">
 <!--    <h2 class="text-danger">Внимание! страница обновляется каждые 10 секунд!</h2>-->
-    <h3 class="text-center">Пиццы, которые вас ждут &#127829;</h3>
-    <table class="table mt-5  border-dark" id="table-content">
+    <h3 class="text-center mb-5">Пицца &#127829;</h3>
+    <table class="table table-bordered table-striped" id="table-content">
         <thead>
         <tr>
             <th scope="col">Название</th>
