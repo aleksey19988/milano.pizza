@@ -10,7 +10,7 @@
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 
-$this->title = 'Готовая пицца';
+$this->title = 'Административная панель';
 $readyPizzasList = [];
 foreach($readyPizzas as $readyPizza) {
     $readyPizzasList[$readyPizza->fk_pizza] = $readyPizza->number_of_pieces;
