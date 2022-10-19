@@ -5,20 +5,16 @@ namespace app\models\backend;
 use Yii;
 
 /**
- * This is the model class for table "d_pizzas".
+ * This is the model class for table "pizzas".
  *
  * @property int $id
  * @property string $title Название пиццы
- * @property int|null $weight Вес пиццы
- * @property int|null $fk_diameter Диаметр пиццы
- * @property int|null $ingredients Ингредиенты
- * @property int|null $price Стоимость пиццы
- * @property int|null $piece_price Стоимость кусочка пиццы
+ * @property string|null $image_path Расположение изображения
  * @property int $is_active Активен
- * @property string|null $image_path
  *
- * @property Diameters $fkDiameter
- * @property ReadyPizzas[] $ready-pizzas
+ * @property PizzaIngredients[] $pizzaIngredients
+ * @property PizzaParameters[] $pizzaParameters
+ * @property ReadyPizzas[] $readyPizzas
  */
 class Pizzas extends \yii\db\ActiveRecord
 {
@@ -27,7 +23,7 @@ class Pizzas extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'd_pizzas';
+        return 'pizzas';
     }
 
     /**
@@ -37,9 +33,8 @@ class Pizzas extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['weight', 'fk_diameter', 'ingredients', 'price', 'piece_price', 'is_active'], 'integer'],
+            [['is_active'], 'integer'],
             [['title', 'image_path'], 'string', 'max' => 255],
-            [['fk_diameter'], 'exist', 'skipOnError' => true, 'targetClass' => Diameters::class, 'targetAttribute' => ['fk_diameter' => 'id']],
         ];
     }
 
@@ -50,25 +45,30 @@ class Pizzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Название',
-            'weight' => 'Вес, грамм',
-            'fk_diameter' => 'Диаметр (см)',
-            'ingredients' => 'Ингредиенты',
-            'price' => 'Стоимость, руб.',
-            'piece_price' => 'Стоимость кусочка, руб.',
-            'is_active' => 'Активен',
-            'image_path' => 'Расположение изображения',
+            'title' => 'Title',
+            'image_path' => 'Image Path',
+            'is_active' => 'Is Active',
         ];
     }
 
     /**
-     * Gets query for [[FkDiameter]].
+     * Gets query for [[PizzaIngredients]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getd_diameters()
+    public function getPizzaIngredients()
     {
-        return $this->hasOne(Diameters::class, ['id' => 'fk_diameter']);
+        return $this->hasMany(PizzaIngredients::class, ['pizza_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[PizzaParameters]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPizzaParameters()
+    {
+        return $this->hasMany(PizzaParameters::class, ['pizza_id' => 'id']);
     }
 
     /**
@@ -78,6 +78,6 @@ class Pizzas extends \yii\db\ActiveRecord
      */
     public function getReadyPizzas()
     {
-        return $this->hasMany(ReadyPizzas::class, ['fk_pizza' => 'id']);
+        return $this->hasMany(ReadyPizzas::class, ['pizza_id' => 'id']);
     }
 }

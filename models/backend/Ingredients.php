@@ -5,11 +5,13 @@ namespace app\models\backend;
 use Yii;
 
 /**
- * This is the model class for table "d_ingredients".
+ * This is the model class for table "ingredients".
  *
  * @property int $id
- * @property string $ingredient_name Название ингредиента
+ * @property string $title Название ингредиента
  * @property int $is_active Активен
+ *
+ * @property PizzaIngredients[] $pizzaIngredients
  */
 class Ingredients extends \yii\db\ActiveRecord
 {
@@ -18,7 +20,7 @@ class Ingredients extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'd_ingredients';
+        return 'ingredients';
     }
 
     /**
@@ -27,9 +29,9 @@ class Ingredients extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ingredient_name'], 'required'],
+            [['title'], 'required'],
             [['is_active'], 'integer'],
-            [['ingredient_name'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,8 +42,18 @@ class Ingredients extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ingredient_name' => 'Наименование ингредиента',
-            'is_active' => 'Активен',
+            'title' => 'Title',
+            'is_active' => 'Is Active',
         ];
+    }
+
+    /**
+     * Gets query for [[PizzaIngredients]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPizzaIngredients()
+    {
+        return $this->hasMany(PizzaIngredients::class, ['ingredient_id' => 'id']);
     }
 }

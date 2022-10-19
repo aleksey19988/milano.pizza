@@ -4,12 +4,12 @@ namespace app\models\backend;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\backend\ReadyPizzas;
+use app\models\backend\PizzaIngredients;
 
 /**
- * ReadyPizzasSearch represents the model behind the search form of `app\models\backend\ReadyPizzas`.
+ * PizzaIngredientsSearch represents the model behind the search form of `app\models\backend\PizzaIngredients`.
  */
-class ReadyPizzasSearch extends ReadyPizzas
+class PizzaIngredientsSearch extends PizzaIngredients
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class ReadyPizzasSearch extends ReadyPizzas
     public function rules()
     {
         return [
-            [['id', 'pizza_id', 'number_of_pieces'], 'integer'],
+            [['id', 'pizza_id', 'ingredient_id'], 'integer'],
         ];
     }
 
@@ -39,7 +39,7 @@ class ReadyPizzasSearch extends ReadyPizzas
      */
     public function search($params)
     {
-        $query = ReadyPizzas::find();
+        $query = PizzaIngredients::find();
 
         // add conditions that should always apply here
 
@@ -59,7 +59,7 @@ class ReadyPizzasSearch extends ReadyPizzas
         $query->andFilterWhere([
             'id' => $this->id,
             'pizza_id' => $this->pizza_id,
-            'number_of_pieces' => $this->number_of_pieces,
+            'ingredient_id' => $this->ingredient_id,
         ]);
 
         return $dataProvider;

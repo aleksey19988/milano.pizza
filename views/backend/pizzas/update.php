@@ -5,11 +5,10 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\backend\Pizzas $model */
 
-$this->title = 'Редактирование пиццы: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Список пицц', 'url' => ['index']];
+$this->title = 'Update Pizzas: ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Pizzas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Обновление';
-$model['fk_diameter'] -= 1;
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="pizzas-update">
 

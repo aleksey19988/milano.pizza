@@ -1,24 +1,24 @@
 <?php
 
-use app\models\backend\Pizzas;
+use app\models\backend\PizzaParameters;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\backend\PizzasSearch $searchModel */
+/** @var app\models\backend\PizzaParametersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Pizzas';
+$this->title = 'Pizza Parameters';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pizzas-index">
+<div class="pizza-parameters-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pizzas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Pizza Parameters', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,12 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'title',
-            'image_path',
-            'is_active',
+            'pizza_id',
+            'diameter_id',
+            'weight',
+            'pizza_price',
+            //'piece_price',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Pizzas $model, $key, $index, $column) {
+                'urlCreator' => function ($action, PizzaParameters $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

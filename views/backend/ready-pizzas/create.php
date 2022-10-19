@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\backend\ReadyPizzas $model */
 
-$this->title = 'Добавление готовой пиццы';
-$this->params['breadcrumbs'][] = ['label' => 'Готовые пиццы', 'url' => ['index']];
+$this->title = 'Create Ready Pizzas';
+$this->params['breadcrumbs'][] = ['label' => 'Ready Pizzas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ready-pizzas-create">

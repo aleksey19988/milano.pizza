@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'diameter_value') ?>
+    <?= $form->field($model, 'value') ?>
 
     <?= $form->field($model, 'is_active') ?>
 

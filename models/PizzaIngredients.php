@@ -5,22 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "ready_pizzas".
+ * This is the model class for table "pizza_ingredients".
  *
  * @property int $id
  * @property int $pizza_id ID пиццы
- * @property int $number_of_pieces Количество кусочков
+ * @property int $ingredient_id ID ингредиента
  *
+ * @property Ingredients $ingredient
  * @property Pizzas $pizza
  */
-class ReadyPizzas extends \yii\db\ActiveRecord
+class PizzaIngredients extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'ready_pizzas';
+        return 'pizza_ingredients';
     }
 
     /**
@@ -29,8 +30,9 @@ class ReadyPizzas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pizza_id', 'number_of_pieces'], 'required'],
-            [['pizza_id', 'number_of_pieces'], 'integer'],
+            [['pizza_id', 'ingredient_id'], 'required'],
+            [['pizza_id', 'ingredient_id'], 'integer'],
+            [['ingredient_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ingredients::class, 'targetAttribute' => ['ingredient_id' => 'id']],
             [['pizza_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pizzas::class, 'targetAttribute' => ['pizza_id' => 'id']],
         ];
     }
@@ -43,8 +45,18 @@ class ReadyPizzas extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'pizza_id' => 'Pizza ID',
-            'number_of_pieces' => 'Number Of Pieces',
+            'ingredient_id' => 'Ingredient ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Ingredient]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIngredient()
+    {
+        return $this->hasOne(Ingredients::class, ['id' => 'ingredient_id']);
     }
 
     /**

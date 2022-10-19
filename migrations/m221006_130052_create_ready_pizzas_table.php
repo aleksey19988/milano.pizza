@@ -14,11 +14,11 @@ class m221006_130052_create_ready_pizzas_table extends Migration
     {
         $this->createTable('{{%ready_pizzas}}', [
             'id' => $this->primaryKey(),
-            'fk_pizza' => $this->integer()->notNull()->comment('Наименование пиццы'),
+            'pizza_id' => $this->integer()->notNull()->comment('ID пиццы'),
             'number_of_pieces' => $this->integer()->notNull()->comment('Количество кусочков'),
         ]);
 
-        $this->addForeignKey('fk_id_d_pizzas_to_fk_pizza_ready_pizzas', '{{%ready_pizzas}}', 'fk_pizza', 'd_pizzas', 'id');
+        $this->addForeignKey('fk_ready_pizzas_pizza_id', '{{%ready_pizzas}}', 'pizza_id', 'pizzas', 'id');
     }
 
     /**
@@ -26,7 +26,7 @@ class m221006_130052_create_ready_pizzas_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk_id_d_pizzas_to_fk_pizza_ready_pizzas', '{{%ready_pizzas}}');
+        $this->dropForeignKey('fk_ready_pizzas_pizza_id', '{{%ready_pizzas}}');
         $this->dropTable('{{%ready_pizzas}}');
     }
 }

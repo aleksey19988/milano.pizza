@@ -2,16 +2,16 @@
 
 namespace app\controllers\backend;
 
-use app\models\backend\Pizzas;
-use app\models\backend\PizzasSearch;
+use app\models\backend\PizzaIngredients;
+use app\models\backend\PizzaIngredientsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PizzasController implements the CRUD actions for Pizzas model.
+ * PizzaIngredientsController implements the CRUD actions for PizzaIngredients model.
  */
-class PizzasController extends Controller
+class PizzaIngredientsController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class PizzasController extends Controller
     }
 
     /**
-     * Lists all Pizzas models.
+     * Lists all PizzaIngredients models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new PizzasSearch();
+        $searchModel = new PizzaIngredientsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class PizzasController extends Controller
     }
 
     /**
-     * Displays a single Pizzas model.
+     * Displays a single PizzaIngredients model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class PizzasController extends Controller
     }
 
     /**
-     * Creates a new Pizzas model.
+     * Creates a new PizzaIngredients model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Pizzas();
+        $model = new PizzaIngredients();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class PizzasController extends Controller
     }
 
     /**
-     * Updates an existing Pizzas model.
+     * Updates an existing PizzaIngredients model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class PizzasController extends Controller
     }
 
     /**
-     * Deletes an existing Pizzas model.
+     * Deletes an existing PizzaIngredients model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class PizzasController extends Controller
     }
 
     /**
-     * Finds the Pizzas model based on its primary key value.
+     * Finds the PizzaIngredients model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Pizzas the loaded model
+     * @return PizzaIngredients the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pizzas::findOne(['id' => $id])) !== null) {
+        if (($model = PizzaIngredients::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

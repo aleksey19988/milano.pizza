@@ -5,13 +5,13 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "d_diameters".
+ * This is the model class for table "diameters".
  *
  * @property int $id
- * @property int $diameter_value Диаметр (см)
+ * @property int $value Размер, см
  * @property int $is_active Активен
  *
- * @property Pizzas[] $dPizzas
+ * @property PizzaParameters[] $pizzaParameters
  */
 class Diameters extends \yii\db\ActiveRecord
 {
@@ -20,7 +20,7 @@ class Diameters extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'd_diameters';
+        return 'diameters';
     }
 
     /**
@@ -29,8 +29,8 @@ class Diameters extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['diameter_value'], 'required'],
-            [['diameter_value', 'is_active'], 'integer'],
+            [['value'], 'required'],
+            [['value', 'is_active'], 'integer'],
         ];
     }
 
@@ -41,18 +41,18 @@ class Diameters extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'diameter_value' => 'Diameter Value',
+            'value' => 'Value',
             'is_active' => 'Is Active',
         ];
     }
 
     /**
-     * Gets query for [[DPizzas]].
+     * Gets query for [[PizzaParameters]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDPizzas()
+    public function getPizzaParameters()
     {
-        return $this->hasMany(Pizzas::class, ['fk_diameter' => 'id']);
+        return $this->hasMany(PizzaParameters::class, ['diameter_id' => 'id']);
     }
 }

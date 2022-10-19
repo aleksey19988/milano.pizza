@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\backend\Diameters $model */
 
-$this->title = 'Добавить диаметр';
-$this->params['breadcrumbs'][] = ['label' => 'Доступные диаметры пиццы', 'url' => ['index']];
+$this->title = 'Create Diameters';
+$this->params['breadcrumbs'][] = ['label' => 'Diameters', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diameters-create">

@@ -1,26 +1,26 @@
 <?php
 
-namespace app\models\backend;
+namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "d_order_statuses".
+ * This is the model class for table "ingredients".
  *
  * @property int $id
- * @property string|null $status_name Наименование статуса
+ * @property string $title Название ингредиента
  * @property int $is_active Активен
  *
- * @property Orders[] $orders
+ * @property PizzaIngredients[] $pizzaIngredients
  */
-class OrderStatuses extends \yii\db\ActiveRecord
+class Ingredients extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'd_order_statuses';
+        return 'ingredients';
     }
 
     /**
@@ -29,8 +29,9 @@ class OrderStatuses extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['title'], 'required'],
             [['is_active'], 'integer'],
-            [['status_name'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,18 +42,18 @@ class OrderStatuses extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status_name' => 'Status Name',
+            'title' => 'Title',
             'is_active' => 'Is Active',
         ];
     }
 
     /**
-     * Gets query for [[Orders]].
+     * Gets query for [[PizzaIngredients]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getOrders()
+    public function getPizzaIngredients()
     {
-        return $this->hasMany(Orders::class, ['fk_order_status' => 'id']);
+        return $this->hasMany(PizzaIngredients::class, ['ingredient_id' => 'id']);
     }
 }

@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\backend\ReadyPizzas $model */
+/** @var app\models\backend\PizzaParameters $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ready Pizzas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Pizza Parameters', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="ready-pizzas-view">
+<div class="pizza-parameters-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'pizza_id',
-            'number_of_pieces',
+            'diameter_id',
+            'weight',
+            'pizza_price',
+            'piece_price',
         ],
     ]) ?>
 

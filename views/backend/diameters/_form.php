@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'diameter_value')->textInput() ?>
+    <?= $form->field($model, 'value')->textInput() ?>
 
     <?= $form->field($model, 'is_active')->textInput() ?>
 

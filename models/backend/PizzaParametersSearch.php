@@ -4,12 +4,12 @@ namespace app\models\backend;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\backend\Orders;
+use app\models\backend\PizzaParameters;
 
 /**
- * OrdersSearch represents the model behind the search form of `app\models\backend\Orders`.
+ * PizzaParametersSearch represents the model behind the search form of `app\models\backend\PizzaParameters`.
  */
-class OrdersSearch extends Orders
+class PizzaParametersSearch extends PizzaParameters
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,7 @@ class OrdersSearch extends Orders
     public function rules()
     {
         return [
-            [['id', 'fk_order_status', 'total'], 'integer'],
-            [['order_content', 'created_at', 'closed_at'], 'safe'],
+            [['id', 'pizza_id', 'diameter_id', 'weight', 'pizza_price', 'piece_price'], 'integer'],
         ];
     }
 
@@ -40,7 +39,7 @@ class OrdersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find();
+        $query = PizzaParameters::find();
 
         // add conditions that should always apply here
 
@@ -59,13 +58,12 @@ class OrdersSearch extends Orders
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'closed_at' => $this->closed_at,
-            'fk_order_status' => $this->fk_order_status,
-            'total' => $this->total,
+            'pizza_id' => $this->pizza_id,
+            'diameter_id' => $this->diameter_id,
+            'weight' => $this->weight,
+            'pizza_price' => $this->pizza_price,
+            'piece_price' => $this->piece_price,
         ]);
-
-        $query->andFilterWhere(['like', 'order_content', $this->order_content]);
 
         return $dataProvider;
     }

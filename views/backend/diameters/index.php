@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\backend\DiametersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Доступные диаметры пиццы';
+$this->title = 'Diameters';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="diameters-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Добавить диаметр', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Diameters', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-            'diameter_value',
+            'id',
+            'value',
             'is_active',
             [
-                'class' => ActionColumn::class,
+                'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Diameters $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

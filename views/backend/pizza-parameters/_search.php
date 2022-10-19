@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\backend\PizzasSearch $model */
+/** @var app\models\backend\PizzaParametersSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="pizzas-search">
+<div class="pizza-parameters-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,11 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?= $form->field($model, 'pizza_id') ?>
 
-    <?= $form->field($model, 'image_path') ?>
+    <?= $form->field($model, 'diameter_id') ?>
 
-    <?= $form->field($model, 'is_active') ?>
+    <?= $form->field($model, 'weight') ?>
+
+    <?= $form->field($model, 'pizza_price') ?>
+
+    <?php // echo $form->field($model, 'piece_price') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

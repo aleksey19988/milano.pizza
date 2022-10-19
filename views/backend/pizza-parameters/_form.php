@@ -4,17 +4,23 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\backend\ReadyPizzas $model */
+/** @var app\models\backend\PizzaParameters $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="ready-pizzas-form">
+<div class="pizza-parameters-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'pizza_id')->textInput() ?>
 
-    <?= $form->field($model, 'number_of_pieces')->textInput() ?>
+    <?= $form->field($model, 'diameter_id')->textInput() ?>
+
+    <?= $form->field($model, 'weight')->textInput() ?>
+
+    <?= $form->field($model, 'pizza_price')->textInput() ?>
+
+    <?= $form->field($model, 'piece_price')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

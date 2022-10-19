@@ -18,7 +18,7 @@ class IngredientsSearch extends Ingredients
     {
         return [
             [['id', 'is_active'], 'integer'],
-            [['ingredient_name'], 'safe'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -62,7 +62,7 @@ class IngredientsSearch extends Ingredients
             'is_active' => $this->is_active,
         ]);
 
-        $query->andFilterWhere(['like', 'ingredient_name', $this->ingredient_name]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

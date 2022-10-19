@@ -17,7 +17,7 @@ class PizzasSearch extends Pizzas
     public function rules()
     {
         return [
-            [['id', 'weight', 'fk_diameter', 'ingredients', 'price', 'piece_price', 'is_active'], 'integer'],
+            [['id', 'is_active'], 'integer'],
             [['title', 'image_path'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class PizzasSearch extends Pizzas
      */
     public function search($params)
     {
-        $query = Pizzas::find()->with('d_diameters');
+        $query = Pizzas::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,6 @@ class PizzasSearch extends Pizzas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'weight' => $this->weight,
-            'fk_diameter' => $this->fk_diameter,
-            'ingredients' => $this->ingredients,
-            'price' => $this->price,
-            'piece_price' => $this->piece_price,
             'is_active' => $this->is_active,
         ]);
 

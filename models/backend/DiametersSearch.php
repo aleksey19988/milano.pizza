@@ -17,7 +17,7 @@ class DiametersSearch extends Diameters
     public function rules()
     {
         return [
-            [['id', 'diameter_value', 'is_active'], 'integer'],
+            [['id', 'value', 'is_active'], 'integer'],
         ];
     }
 
@@ -58,7 +58,7 @@ class DiametersSearch extends Diameters
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'diameter_value' => $this->diameter_value,
+            'value' => $this->value,
             'is_active' => $this->is_active,
         ]);
 
