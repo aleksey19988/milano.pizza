@@ -17,7 +17,7 @@ class IngredientsSearch extends Ingredients
     public function rules()
     {
         return [
-            [['id', 'is_active'], 'integer'],
+            [['id'], 'integer'],
             [['title'], 'safe'],
         ];
     }

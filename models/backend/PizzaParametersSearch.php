@@ -17,7 +17,8 @@ class PizzaParametersSearch extends PizzaParameters
     public function rules()
     {
         return [
-            [['id', 'pizza_id', 'diameter_id', 'weight', 'pizza_price', 'piece_price'], 'integer'],
+            [['id', 'diameter_id', 'weight', 'pizza_price', 'piece_price'], 'integer'],
+            [['pizza_id'], 'string'],
         ];
     }
 
@@ -40,7 +41,7 @@ class PizzaParametersSearch extends PizzaParameters
     public function search($params)
     {
         $query = PizzaParameters::find()
-            ->with('diameter', 'pizza');
+            ->JoinWith(['diameter', 'pizza']);
 
         // add conditions that should always apply here
 
@@ -57,10 +58,10 @@ class PizzaParametersSearch extends PizzaParameters
         }
 
         // grid filtering conditions
+        $query->andFilterWhere(['like', 'pizzas.title', $this->pizza_id]);
         $query->andFilterWhere([
             'id' => $this->id,
-            'pizza_id' => $this->pizza,
-            'diameter_id' => $this->diameter_id,
+            'diameters.value' => $this->diameter_id,
             'weight' => $this->weight,
             'pizza_price' => $this->pizza_price,
             'piece_price' => $this->piece_price,

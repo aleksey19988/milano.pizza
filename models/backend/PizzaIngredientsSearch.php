@@ -57,10 +57,14 @@ class PizzaIngredientsSearch extends PizzaIngredients
         }
 
         // grid filtering conditions
+
+        $query->andFilterWhere(['like', 'ingredients.title', $this->ingredient_id]);
+        $query->andFilterWhere(['like', 'pizzas.title', $this->pizza_id]);
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'pizzas.title' => $this->pizza_id,
-            'ingredients.title' => $this->ingredient_id,
+//            'pizzas.title' => $this->pizza_id,
+//            'ingredients.title' => $this->ingredient_id,
         ]);
 
         return $dataProvider;

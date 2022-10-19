@@ -17,7 +17,8 @@ class DiametersSearch extends Diameters
     public function rules()
     {
         return [
-            [['id', 'value', 'is_active'], 'integer'],
+            [['id', 'value'], 'integer'],
+//            ['is_active', 'string'],
         ];
     }
 
