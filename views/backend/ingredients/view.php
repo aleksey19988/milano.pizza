@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
 //            'id',
             'title',
-            'is_active',
+            [
+                'attribute' => 'is_active',
+                'value' => $model->is_active ? 'Да' : 'Нет',
+            ],
         ],
     ]) ?>
 

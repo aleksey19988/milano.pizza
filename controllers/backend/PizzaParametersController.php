@@ -6,6 +6,7 @@ use app\models\backend\Diameters;
 use app\models\backend\PizzaParameters;
 use app\models\backend\PizzaParametersSearch;
 use app\models\backend\Pizzas;
+use yii\base\BaseObject;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -98,6 +99,8 @@ class PizzaParametersController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $pizzas = new Pizzas();
+        $diameters = new Diameters();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -105,6 +108,8 @@ class PizzaParametersController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'pizzas' => $pizzas,
+            'diameters' => $diameters,
         ]);
     }
 

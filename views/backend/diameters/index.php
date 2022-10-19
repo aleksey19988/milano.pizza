@@ -31,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'id',
             'value',
-            'is_active',
+            [
+                'attribute' => 'is_active',
+                'content' => function($data) {
+                    return $data->is_active ? 'Да' : 'Нет';
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Diameters $model, $key, $index, $column) {

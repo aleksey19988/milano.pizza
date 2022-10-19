@@ -17,7 +17,8 @@ class PizzaIngredientsSearch extends PizzaIngredients
     public function rules()
     {
         return [
-            [['id', 'pizza_id', 'ingredient_id'], 'integer'],
+            [['id'], 'integer'],
+            [['pizza_id', 'ingredient_id'], 'string'],
         ];
     }
 
@@ -39,7 +40,7 @@ class PizzaIngredientsSearch extends PizzaIngredients
      */
     public function search($params)
     {
-        $query = PizzaIngredients::find();
+        $query = PizzaIngredients::find()->joinWith(['pizza', 'ingredient']);
 
         // add conditions that should always apply here
 
@@ -58,8 +59,8 @@ class PizzaIngredientsSearch extends PizzaIngredients
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'pizza_id' => $this->pizza_id,
-            'ingredient_id' => $this->ingredient_id,
+            'pizzas.title' => $this->pizza_id,
+            'ingredients.title' => $this->ingredient_id,
         ]);
 
         return $dataProvider;

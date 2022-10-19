@@ -68,6 +68,6 @@ class Diameters extends \yii\db\ActiveRecord
      */
     public function getDiametersList(): array
     {
-        return ArrayHelper::map($this::find()->all(), 'id', 'value');
+        return ArrayHelper::map($this::find()->where(['is_active' => 1])->all(), 'id', 'value');
     }
 }

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\backend\PizzaIngredients $model */
 
-$this->title = $model->id;
+$this->title = $model->pizza->title;
 $this->params['breadcrumbs'][] = ['label' => 'Ингредиенты в пиццах', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -30,8 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'pizza_id',
-            'ingredient_id',
+            [
+                'attribute' => 'pizza_id',
+                'value' => $model->pizza->title,
+            ],
+            [
+                'attribute' => 'ingredient_id',
+                'value' => $model->ingredient->title,
+            ],
         ],
     ]) ?>
 
