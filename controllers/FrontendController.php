@@ -66,7 +66,7 @@ class FrontendController extends Controller
     public function actionIndex()
     {
         $readyPizzas = ReadyPizzas::find()
-            ->with('d_pizzas')
+            ->with(['pizza'])
             ->all();
         return $this->render('index', compact( 'readyPizzas'));
     }

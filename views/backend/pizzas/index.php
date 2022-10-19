@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\backend\PizzasSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Pizzas';
+$this->title = 'Список пицц';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pizzas-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pizzas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить новую пиццу', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,10 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'title',
-            'image_path',
-            'is_active',
+//            'image_path',
+            [
+                'attribute' => 'is_active',
+                'label' => 'Доступна к продаже',
+                'content' => function($data) {
+                    return $data->is_active ? 'Да' : 'Нет';
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Pizzas $model, $key, $index, $column) {

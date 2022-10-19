@@ -13,7 +13,7 @@ use yii\bootstrap4\Html;
 $this->title = 'Административная панель';
 $readyPizzasList = [];
 foreach($readyPizzas as $readyPizza) {
-    $readyPizzasList[$readyPizza->fk_pizza] = $readyPizza->number_of_pieces;
+    $readyPizzasList[$readyPizza->pizza_id] = $readyPizza->number_of_pieces;
 }
 ?>
     <h3>Список справочников выше &#10548;</h3>

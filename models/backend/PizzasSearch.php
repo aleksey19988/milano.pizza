@@ -17,7 +17,7 @@ class PizzasSearch extends Pizzas
     public function rules()
     {
         return [
-            [['id', 'is_active'], 'integer'],
+            [['id'], 'integer'],
             [['title', 'image_path'], 'safe'],
         ];
     }

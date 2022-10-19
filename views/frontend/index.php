@@ -2,8 +2,10 @@
 
 /**
  * @var yii\web\View $this
- * @var \app\controllers\FrontendController $readyPizzas
+ * @var app\controllers\FrontendController $readyPizzas
  */
+
+use app\models\PizzaParameters;
 
 $this->title = 'Готовая пицца';
 ?>
@@ -23,9 +25,9 @@ $this->title = 'Готовая пицца';
         <?php foreach ($readyPizzas as $readyPizza): ?>
             <?php if ($readyPizza->number_of_pieces > 0): ?>
                 <tr>
-                    <th class="card-title"><?= $readyPizza->d_pizzas->title ?></th>
-                    <td class="card-text pizza-price"> <?= $readyPizza->d_pizzas->price ?> &#8381;</td>
-                    <td class="card-text piece-price"><?= $readyPizza->d_pizzas->piece_price ?> &#8381;</td>
+                    <th class="card-title"><?= $readyPizza->pizza->title ?></th>
+                    <td class="card-text pizza-price"> <?= PizzaParameters::findOne($readyPizza->pizza->id)['pizza_price'] ?> &#8381;</td>
+                    <td class="card-text piece-price"><?= PizzaParameters::findOne($readyPizza->pizza->id)['piece_price'] ?> &#8381;</td>
                     <td class="card-text available-for-sale"><?= $readyPizza->number_of_pieces ?></td>
                 </tr>
             <?php endif; ?>

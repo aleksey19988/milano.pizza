@@ -69,14 +69,14 @@ class BackendController extends Controller
         if(Yii::$app->request->post()){
             $data = Yii::$app->request->post();
             $pizza = ReadyPizzas::find()
-            ->where(['fk_pizza' => $data['pizzaId']])
+            ->where(['pizza_id' => $data['pizzaId']])
             ->one();
 
             if ($pizza !== null){
                 $pizza->number_of_pieces = $data['piecesCount'];
             } else {
                 $pizza = new ReadyPizzas();
-                $pizza->fk_pizza = $data['pizzaId'];
+                $pizza->pizza_id = $data['pizzaId'];
                 $pizza->number_of_pieces = $data['piecesCount'];
             }
             $pizza->save();
@@ -88,9 +88,8 @@ class BackendController extends Controller
             // do your query stuff here
         }
 
-//        return \yii\helpers\Json::encode($test);
-
         $pizzas = Pizzas::find()
+            ->where(['is_active' => 1])
             ->orderBy('title')
             ->all();
         $readyPizzas = ReadyPizzas::find()

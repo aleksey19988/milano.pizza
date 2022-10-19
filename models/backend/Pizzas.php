@@ -46,9 +46,9 @@ class Pizzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'image_path' => 'Image Path',
-            'is_active' => 'Is Active',
+            'title' => 'Наименование пиццы',
+            'image_path' => 'Путь до изображения',
+            'is_active' => 'Активен',
         ];
     }
 
