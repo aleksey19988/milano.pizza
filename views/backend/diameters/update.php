@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\backend\Diameters $model */
 
-$this->title = 'Update Diameters: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Diameters', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактирование диаметра: ' . $model->value . ' см';
+$this->params['breadcrumbs'][] = ['label' => 'Диаметры', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->value . ' см', 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="diameters-update">
 

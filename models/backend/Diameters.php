@@ -41,8 +41,8 @@ class Diameters extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'value' => 'Value',
-            'is_active' => 'Is Active',
+            'value' => 'Значение, см',
+            'is_active' => 'Активен',
         ];
     }
 
