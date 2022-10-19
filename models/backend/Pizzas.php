@@ -3,6 +3,7 @@
 namespace app\models\backend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "pizzas".
@@ -79,5 +80,19 @@ class Pizzas extends \yii\db\ActiveRecord
     public function getReadyPizzas()
     {
         return $this->hasMany(ReadyPizzas::class, ['pizza_id' => 'id']);
+    }
+
+    /**
+     * Возвращает список в виде:
+     * [
+     *   ['id' => 'title'],
+     *   ['id' => 'title'],
+     *   ...
+     * ]
+     *
+     */
+    public function getPizzasList(): array
+    {
+        return ArrayHelper::map($this::find()->all(), 'id', 'title');
     }
 }

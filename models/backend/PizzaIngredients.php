@@ -44,8 +44,8 @@ class PizzaIngredients extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pizza_id' => 'Pizza ID',
-            'ingredient_id' => 'Ingredient ID',
+            'pizza_id' => 'Наименование пиццы',
+            'ingredient_id' => 'Наименование ингредиента',
         ];
     }
 

@@ -2,8 +2,10 @@
 
 namespace app\controllers\backend;
 
+use app\models\backend\Ingredients;
 use app\models\backend\PizzaIngredients;
 use app\models\backend\PizzaIngredientsSearch;
+use app\models\backend\Pizzas;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -40,10 +42,12 @@ class PizzaIngredientsController extends Controller
     {
         $searchModel = new PizzaIngredientsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $pizzas = new Pizzas();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pizzas' => $pizzas,
         ]);
     }
 
@@ -68,6 +72,8 @@ class PizzaIngredientsController extends Controller
     public function actionCreate()
     {
         $model = new PizzaIngredients();
+        $pizzas = new Pizzas();
+        $ingredients = new Ingredients();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -79,6 +85,8 @@ class PizzaIngredientsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'pizzas' => $pizzas,
+            'ingredients' => $ingredients,
         ]);
     }
 

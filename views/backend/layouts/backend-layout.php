@@ -38,8 +38,8 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Диаметры', 'url' => ['/diameters']],
-            ['label' => 'Ингредиенты', 'url' => ['/ingredients']],
-            ['label' => 'Заказы', 'url' => ['/orders']],
+            ['label' => 'Ингредиенты (все)', 'url' => ['/ingredients']],
+            ['label' => 'Ингредиенты в пиццах', 'url' => ['/pizza-ingredients']],
             ['label' => 'Готовые пиццы', 'url' => ['/ready-pizzas']],
             ['label' => 'Список пицц', 'url' => ['/pizzas']],
             Yii::$app->user->isGuest ? (

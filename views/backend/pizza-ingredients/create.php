@@ -4,9 +4,11 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\backend\PizzaIngredients $model */
+/** @var app\models\backend\Pizzas $pizzas */
+/** @var app\models\backend\Ingredients $ingredients */
 
-$this->title = 'Create Pizza Ingredients';
-$this->params['breadcrumbs'][] = ['label' => 'Pizza Ingredients', 'url' => ['index']];
+$this->title = 'Добавить ингредиент к пицце';
+$this->params['breadcrumbs'][] = ['label' => 'Ингредиенты в пиццах', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pizza-ingredients-create">
@@ -15,6 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'pizzas' => $pizzas,
+        'ingredients' => $ingredients,
     ]) ?>
 
 </div>
