@@ -2,8 +2,10 @@
 
 namespace app\controllers\backend;
 
+use app\models\backend\Diameters;
 use app\models\backend\PizzaParameters;
 use app\models\backend\PizzaParametersSearch;
+use app\models\backend\Pizzas;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,6 +70,8 @@ class PizzaParametersController extends Controller
     public function actionCreate()
     {
         $model = new PizzaParameters();
+        $pizzas = new Pizzas();
+        $diameters = new Diameters();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -79,6 +83,8 @@ class PizzaParametersController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'pizzas' => $pizzas,
+            'diameters' => $diameters,
         ]);
     }
 

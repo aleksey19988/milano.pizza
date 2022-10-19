@@ -3,6 +3,7 @@
 namespace app\models\backend;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "diameters".
@@ -54,5 +55,19 @@ class Diameters extends \yii\db\ActiveRecord
     public function getPizzaParameters()
     {
         return $this->hasMany(PizzaParameters::class, ['diameter_id' => 'id']);
+    }
+
+    /**
+     * Возвращает список в виде:
+     * [
+     *   ['id' => 'value'],
+     *   ['id' => 'value'],
+     *   ...
+     * ]
+     *
+     */
+    public function getDiametersList(): array
+    {
+        return ArrayHelper::map($this::find()->all(), 'id', 'value');
     }
 }

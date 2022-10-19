@@ -47,11 +47,11 @@ class PizzaParameters extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pizza_id' => 'Pizza ID',
-            'diameter_id' => 'Diameter ID',
-            'weight' => 'Weight',
-            'pizza_price' => 'Pizza Price',
-            'piece_price' => 'Piece Price',
+            'pizza_id' => 'Наименование пиццы',
+            'diameter_id' => 'Диаметр, см',
+            'weight' => 'Вес, грамм',
+            'pizza_price' => 'Стоимость целой пиццы',
+            'piece_price' => 'Стоимость кусочка пиццы',
         ];
     }
 
@@ -73,5 +73,11 @@ class PizzaParameters extends \yii\db\ActiveRecord
     public function getPizza()
     {
         return $this->hasOne(Pizzas::class, ['id' => 'pizza_id']);
+    }
+
+    public function getPizzaTitle()
+    {
+        $pizza = $this->pizza;
+        return $pizza ? $pizza->title : '';
     }
 }

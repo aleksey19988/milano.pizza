@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\backend\PizzaParametersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Pizza Parameters';
+$this->title = 'Параметры пицц';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pizza-parameters-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pizza Parameters', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить параметры к пицце', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,13 +28,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'pizza_id',
-            'diameter_id',
+//            'id',
+            [
+                'attribute' => 'pizza_id',
+                'label' => 'Наименование пиццы',
+                'content' => function($data){
+                    return $data->pizza->title;
+                }
+            ],
+            [
+                'attribute' => 'diameter_id',
+                'label' => 'Диаметр, см',
+                'content' => function($data){
+                    return $data->diameter->value;
+                }
+            ],
             'weight',
             'pizza_price',
-            //'piece_price',
+            'piece_price',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PizzaParameters $model, $key, $index, $column) {

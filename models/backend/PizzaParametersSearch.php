@@ -39,7 +39,8 @@ class PizzaParametersSearch extends PizzaParameters
      */
     public function search($params)
     {
-        $query = PizzaParameters::find();
+        $query = PizzaParameters::find()
+            ->with('diameter', 'pizza');
 
         // add conditions that should always apply here
 
@@ -58,7 +59,7 @@ class PizzaParametersSearch extends PizzaParameters
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'pizza_id' => $this->pizza_id,
+            'pizza_id' => $this->pizza,
             'diameter_id' => $this->diameter_id,
             'weight' => $this->weight,
             'pizza_price' => $this->pizza_price,

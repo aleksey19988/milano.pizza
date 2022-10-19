@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\backend\PizzaParameters $model */
 
-$this->title = 'Update Pizza Parameters: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Pizza Parameters', 'url' => ['index']];
+$this->title = 'Редактировать параметры пиццы: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Параметры пицц', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Сохранить';
 ?>
 <div class="pizza-parameters-update">
 
