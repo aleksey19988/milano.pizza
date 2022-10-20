@@ -39,6 +39,7 @@ $this->title = 'Готовая пицца';
 <script type="text/javascript">
     setInterval("ajaxCall()", 10000);
     let ajaxCall = function() {
+        console.log(document.URL);
         $('#table-content').load(document.URL +  ' #table-content');
     }
 </script>

@@ -34,18 +34,34 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Диаметры', 'url' => ['/diameters']],
-            ['label' => 'Ингредиенты (все)', 'url' => ['/ingredients']],
-            ['label' => 'Ингредиенты в пиццах', 'url' => ['/pizza-ingredients']],
-            ['label' => 'Параметры пицц', 'url' => ['/pizza-parameters']],
-            ['label' => 'Готовые пиццы', 'url' => ['/ready-pizzas']],
-            ['label' => 'Список пицц', 'url' => ['/pizzas']],
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Войти', 'url' => ['/backend/login']]
-            ) : (
+    if (Yii::$app->user->identity && Yii::$app->user->identity->username == 'admin') {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
+                ['label' => 'Диаметры', 'url' => ['/diameters']],
+                ['label' => 'Ингредиенты (все)', 'url' => ['/ingredients']],
+                ['label' => 'Ингредиенты в пиццах', 'url' => ['/pizza-ingredients']],
+                ['label' => 'Параметры пицц', 'url' => ['/pizza-parameters']],
+                ['label' => 'Готовые пиццы', 'url' => ['/ready-pizzas']],
+                ['label' => 'Список пицц', 'url' => ['/pizzas']],
+                Yii::$app->user->isGuest ? (
+                ['label' => 'Войти', 'url' => ['/backend/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/backend/logout'], 'post', ['class' => 'form-inline'])
+                    . Html::submitButton(
+                        'Выйти (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                ),
+            ],
+        ]);
+    } elseif (Yii::$app->user->identity !== null) {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
                 '<li>'
                 . Html::beginForm(['/backend/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
@@ -54,9 +70,17 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            ),
-        ],
-    ]);
+            ],
+        ]);
+    } else {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
+                ['label' => 'Войти', 'url' => ['/backend/login']],
+            ],
+        ]);
+    }
+
     NavBar::end();
     ?>
 </header>

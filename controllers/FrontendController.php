@@ -27,7 +27,7 @@ class FrontendController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'denyCallback' => function ($rule, $action) {
-                    return $this->redirect(['login']);
+                    return $this->redirect(['site/login']);
                 },
                 'rules' => [
                     [

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'image_path')->textInput(['maxlength' => true]) ?>
+<!--    --><?//= $form->field($model, 'image_path')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'is_active')->label('Доступна к продаже')->dropDownList([1 => 'Да', 0 => 'Нет']) ?>
 
