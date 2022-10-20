@@ -41,7 +41,7 @@ addPieceButtons.on('click', function(e) {
         url: './',
         method: 'POST',
         dataType: 'html',
-        async: false,
+        async: true,
         data: {
             'pizzaId': pizzaId,
             'piecesCount': pizzaPiecesCount
@@ -94,7 +94,7 @@ removePieceButtons.on('click', function(e) {
         url: './',
         method: 'POST',
         dataType: 'html',
-        async: false,
+        async: true,
         data: {
             'pizzaId': pizzaId,
             'piecesCount': pizzaPiecesCount
@@ -143,7 +143,7 @@ addPizzaButton.on('click', function(e) {
         url: './',
         method: 'POST',
         dataType: 'html',
-        async: false,
+        async: true,
         data: {
             'pizzaId': pizzaId,
             'piecesCount': pizzaPiecesCount

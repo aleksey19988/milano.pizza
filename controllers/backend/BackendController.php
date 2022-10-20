@@ -148,4 +148,5 @@ class BackendController extends Controller
 
         return $this->goHome();
     }
+
 }

@@ -23,19 +23,19 @@ class DiametersController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'denyCallback' => function ($rule, $action) {
-                        return $this->redirect(['backend/error']);
-                    },
-                    'rules' => [
-                        [
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                    ],
-                ],
+//                'access' => [
+//                    'class' => AccessControl::class,
+//                    'denyCallback' => function ($rule, $action) {
+//                        return $this->redirect(['backend/error']);
+//                    },
+//                    'rules' => [
+//                        [
+//                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+//                            'allow' => true,
+//                            'roles' => ['admin'],
+//                        ],
+//                    ],
+//                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -156,7 +156,7 @@ class DiametersController extends Controller
 //        $employeeRole = Yii::$app->authManager->createRole('employee');
 //        $employeeRole->description = 'Сотрудник';
 //        Yii::$app->authManager->add($employeeRole);
-
+//
 //        $permission = Yii::$app->authManager->createPermission('canSeePizzasList');
 //        $permission->description = 'Доступ к списку пицц (сотрудникам)';
 //        Yii::$app->authManager->add($permission);
@@ -170,9 +170,9 @@ class DiametersController extends Controller
 //
 //        $adminRole = Yii::$app->authManager->getRole('admin');
 //        Yii::$app->authManager->addChild($adminRole, $adminPermission);
-
-        $userRole = Yii::$app->authManager->getRole('admin');
-        Yii::$app->authManager->assign($userRole, 100);
+//
+//        $userRole = Yii::$app->authManager->getRole('admin');
+//        Yii::$app->authManager->assign($userRole, 100);
 //
         return 'Success!';
     }

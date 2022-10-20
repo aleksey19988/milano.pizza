@@ -109,4 +109,12 @@ class FrontendController extends Controller
 
         return $this->goHome();
     }
+
+    public function actionUpdateContent()
+    {
+        $readyPizzas = ReadyPizzas::find()
+            ->with(['pizza'])
+            ->all();
+        return $this->renderAjax('index', compact( 'readyPizzas'));
+    }
 }
