@@ -8,6 +8,7 @@ use Yii;
 use yii\base\BaseObject;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ErrorAction;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -25,8 +26,19 @@ class BackendController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'denyCallback' => function ($rule, $action) {
+                    return $this->redirect(['login']);
+                },
                 'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['login'],
+                        'allow' => true,
+                    ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
@@ -50,7 +62,7 @@ class BackendController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -101,5 +113,39 @@ class BackendController extends Controller
     public function actionAbout()
     {
         return 'About page';
+    }
+
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
+    public function actionLogin()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Logout action.
+     *
+     * @return Response
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
     }
 }

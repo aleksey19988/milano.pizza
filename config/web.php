@@ -10,6 +10,7 @@ $config = [
     'timeZone' => 'Europe/Moscow',
     'defaultRoute' => 'frontend/index',
     'controllerNamespace' => 'app\controllers',
+    'layout' => 'frontend-layout',
     'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],

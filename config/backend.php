@@ -21,6 +21,10 @@ $config = [
         '@backend' => '/backend'
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ZgXAqQ4RJhIof3hyg3gVZfdnKj_afj3w',
@@ -31,9 +35,10 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['login'],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

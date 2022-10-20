@@ -6,6 +6,7 @@ use app\models\backend\Ingredients;
 use app\models\backend\PizzaIngredients;
 use app\models\backend\PizzaIngredientsSearch;
 use app\models\backend\Pizzas;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +24,19 @@ class PizzaIngredientsController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'denyCallback' => function ($rule, $action) {
+                        return $this->redirect(['backend/error']);
+                    },
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['admin'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

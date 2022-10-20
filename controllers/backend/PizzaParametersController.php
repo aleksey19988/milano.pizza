@@ -7,6 +7,7 @@ use app\models\backend\PizzaParameters;
 use app\models\backend\PizzaParametersSearch;
 use app\models\backend\Pizzas;
 use yii\base\BaseObject;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +25,19 @@ class PizzaParametersController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'denyCallback' => function ($rule, $action) {
+                        return $this->redirect(['backend/error']);
+                    },
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['admin'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

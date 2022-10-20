@@ -6,6 +6,7 @@ use app\models\backend\Pizzas;
 use app\models\backend\ReadyPizzas;
 use app\models\backend\ReadyPizzasSearch;
 use yii\base\BaseObject;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +24,19 @@ class ReadyPizzasController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'denyCallback' => function ($rule, $action) {
+                        return $this->redirect(['backend/error']);
+                    },
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['admin'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

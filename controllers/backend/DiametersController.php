@@ -4,6 +4,8 @@ namespace app\controllers\backend;
 
 use app\models\backend\Diameters;
 use app\models\backend\DiametersSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,6 +23,19 @@ class DiametersController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'denyCallback' => function ($rule, $action) {
+                        return $this->redirect(['backend/error']);
+                    },
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['admin'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -130,5 +145,35 @@ class DiametersController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionRole()
+    {
+//        $adminRole = Yii::$app->authManager->createRole('admin');
+//        $adminRole->description = 'Администратор';
+//        Yii::$app->authManager->add($adminRole);
+//
+//        $employeeRole = Yii::$app->authManager->createRole('employee');
+//        $employeeRole->description = 'Сотрудник';
+//        Yii::$app->authManager->add($employeeRole);
+
+//        $permission = Yii::$app->authManager->createPermission('canSeePizzasList');
+//        $permission->description = 'Доступ к списку пицц (сотрудникам)';
+//        Yii::$app->authManager->add($permission);
+//
+//        $adminPermission = Yii::$app->authManager->createPermission('casSeeAdmin');
+//        $adminPermission->description = 'Доступ к списку пицц (сотрудникам)';
+//        Yii::$app->authManager->add($adminPermission);
+//
+//        $role = Yii::$app->authManager->getRole('employee');
+//        Yii::$app->authManager->addChild($role, $permission);
+//
+//        $adminRole = Yii::$app->authManager->getRole('admin');
+//        Yii::$app->authManager->addChild($adminRole, $adminPermission);
+
+        $userRole = Yii::$app->authManager->getRole('admin');
+        Yii::$app->authManager->assign($userRole, 100);
+//
+        return 'Success!';
     }
 }
