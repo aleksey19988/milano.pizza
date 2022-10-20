@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\backend\ReadyPizzasSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Ready Pizzas';
+$this->title = 'Готовые пиццы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ready-pizzas-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Ready Pizzas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить готовую пиццу', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,8 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'pizza_id',
+//            'id',
+            [
+                'label' => 'Наименование пиццы',
+                'attribute' => 'pizza_id',
+                'content' => function($data) {
+                    return $data->pizza->title;
+                }
+            ],
             'number_of_pieces',
             [
                 'class' => ActionColumn::className(),

@@ -42,8 +42,8 @@ class ReadyPizzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pizza_id' => 'Pizza ID',
-            'number_of_pieces' => 'Number Of Pieces',
+            'pizza_id' => 'Наименование пиццы',
+            'number_of_pieces' => 'Количество кусочков пиццы',
         ];
     }
 

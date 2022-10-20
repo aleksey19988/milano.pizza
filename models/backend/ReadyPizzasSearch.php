@@ -17,7 +17,8 @@ class ReadyPizzasSearch extends ReadyPizzas
     public function rules()
     {
         return [
-            [['id', 'pizza_id', 'number_of_pieces'], 'integer'],
+            [['id', 'number_of_pieces'], 'integer'],
+            [['pizza_id'], 'string'],
         ];
     }
 
@@ -39,7 +40,7 @@ class ReadyPizzasSearch extends ReadyPizzas
      */
     public function search($params)
     {
-        $query = ReadyPizzas::find();
+        $query = ReadyPizzas::find()->joinWith('pizza');
 
         // add conditions that should always apply here
 
@@ -58,9 +59,10 @@ class ReadyPizzasSearch extends ReadyPizzas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'pizza_id' => $this->pizza_id,
+//            'pizza_id' => $this->pizza_id,
             'number_of_pieces' => $this->number_of_pieces,
         ]);
+        $query->andFilterWhere(['like', 'pizzas.title', $this->pizza_id]);
 
         return $dataProvider;
     }

@@ -2,8 +2,10 @@
 
 namespace app\controllers\backend;
 
+use app\models\backend\Pizzas;
 use app\models\backend\ReadyPizzas;
 use app\models\backend\ReadyPizzasSearch;
+use yii\base\BaseObject;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,6 +70,7 @@ class ReadyPizzasController extends Controller
     public function actionCreate()
     {
         $model = new ReadyPizzas();
+        $pizzas = new Pizzas();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -79,6 +82,7 @@ class ReadyPizzasController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'pizzas' => $pizzas,
         ]);
     }
 
@@ -92,6 +96,7 @@ class ReadyPizzasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $pizzas = new Pizzas();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -99,6 +104,7 @@ class ReadyPizzasController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'pizzas' => $pizzas,
         ]);
     }
 

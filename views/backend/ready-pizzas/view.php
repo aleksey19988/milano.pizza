@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\backend\ReadyPizzas $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ready Pizzas', 'url' => ['index']];
+$this->title = $model->pizza->title;
+$this->params['breadcrumbs'][] = ['label' => 'Готовые пиццы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить этот элемент? (' . $model->pizza->title . ')',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,8 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'pizza_id',
+//            'id',
+            [
+                'label' => 'Наименование пиццы',
+                'attribute' => 'pizza_active',
+                'value' => $model->pizza->title,
+            ],
             'number_of_pieces',
         ],
     ]) ?>
