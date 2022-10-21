@@ -26,8 +26,8 @@ $this->title = 'Готовая пицца';
             <?php if ($readyPizza->number_of_pieces > 0): ?>
                 <tr>
                     <th class="card-title"><?= $readyPizza->pizza->title ?></th>
-                    <td class="card-text pizza-price"> <?= PizzaParameters::findOne($readyPizza->pizza->id)['pizza_price'] ?> &#8381;</td>
-                    <td class="card-text piece-price"><?= PizzaParameters::findOne($readyPizza->pizza->id)['piece_price'] ?> &#8381;</td>
+                    <td class="card-text pizza-price"> <?= PizzaParameters::find()->where(['pizza_id' => $readyPizza->pizza->id])->one()['pizza_price'] ?> &#8381;</td>
+                    <td class="card-text piece-price"><?= PizzaParameters::find()->where(['pizza_id' => $readyPizza->pizza->id])->one()['piece_price'] ?> &#8381;</td>
                     <td class="card-text available-for-sale"><?= $readyPizza->number_of_pieces ?></td>
                 </tr>
             <?php endif; ?>
@@ -36,10 +36,10 @@ $this->title = 'Готовая пицца';
     </table>
 </div>
 
-<script type="text/javascript">
-    setInterval("ajaxCall()", 10000);
-    let ajaxCall = function() {
-        // $('#table-content').load(document.URL +  ' #table-content');
-        $('#table-content').load(document.URL + "update-content");
-    }
-</script>
+<!--<script type="text/javascript">-->
+<!--    setInterval("ajaxCall()", 10000);-->
+<!--    let ajaxCall = function() {-->
+<!--        // $('#table-content').load(document.URL +  ' #table-content');-->
+<!--        $('#table-content').load(document.URL + "update-content");-->
+<!--    }-->
+<!--</script>-->
