@@ -95,4 +95,26 @@ class Pizzas extends \yii\db\ActiveRecord
     {
         return ArrayHelper::map($this::find()->all(), 'id', 'title');
     }
+
+    /**
+     * Возвращает список id пицц, у которых ещё не внесены параметры, для формы редактирования параметров пиццы в виде:
+     * [
+     *   ['id' => 'title'],
+     *   ['id' => 'title'],
+     *   ...
+     * ]
+     *
+     * Отличается от метода getPizzasList() тем, что возвращает только те пиццы, которым ещё не задан ни один параметр
+     */
+    public function getPizzasIdListForParameters()
+    {
+        $idList = [];
+        $objects = PizzaParameters::find()->select('pizza_id')->all();
+
+        foreach($objects as $object) {
+            $idList[] = $object->pizza_id;
+        }
+
+        return ArrayHelper::map($this::find()->where(['not in', 'id', $idList])->all(), 'id', 'title');
+    }
 }

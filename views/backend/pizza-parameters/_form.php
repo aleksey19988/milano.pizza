@@ -12,9 +12,14 @@ use yii\widgets\ActiveForm;
 
 <div class="pizza-parameters-form">
 
+
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'pizza_id')->dropDownList($pizzas->getPizzasList()) ?>
+    <?php if ($model->pizza_id == null): ?>
+        <?= $form->field($model, 'pizza_id')->dropDownList($pizzas->getPizzasIdListForParameters())->hint('Если вы не нашли в списке нужную пиццу, значит она была на прошлой странице и её нужно отредактировать')?>
+    <?php else: ?>
+        <?= $form->field($model, 'pizza_id')->dropDownList([$model->pizza_id => $model->pizza->title], ['disabled' => true]) ?>
+    <?php endif; ?>
 
     <?= $form->field($model, 'diameter_id')->dropDownList($diameters->getDiametersList()) ?>
 

@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = 'Редактировать параметры пиццы: ' . $model->pizza->title;
 $this->params['breadcrumbs'][] = ['label' => 'Параметры пицц', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->pizza->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Сохранить';
 ?>
 <div class="pizza-parameters-update">
