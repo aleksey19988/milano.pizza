@@ -51,7 +51,6 @@ foreach($readyPizzas as $readyPizza) {
                     </div>
                 </div>
             </div>
-
         <?php endforeach; ?>
     </div>
 

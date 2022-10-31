@@ -35,7 +35,6 @@ $this->title = 'Готовая пицца';
                                 echo $pizzaPrice . "&#8381;";
                             }
                         ?>
-<!--                        --><?//= PizzaParameters::find()->where(['pizza_id' => $readyPizza->pizza->id])->one()['pizza_price'] ?><!-- &#8381;-->
                     </td>
                     <td class="card-text piece-price">
                         <?php

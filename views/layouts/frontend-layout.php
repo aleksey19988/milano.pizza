@@ -59,7 +59,7 @@ AppAsset::register($this);
 //    ]);
 //    NavBar::end();
 //    ?>
-    <img src="../../web/images/milano-logo.png" alt="" height="100" class="rounded mx-auto d-block">
+<!--    <img src="../../web/images/milano-logo.png" alt="" height="100" class="rounded mx-auto d-block">-->
 </header>
 
 <main role="main" class="flex-shrink-0">
@@ -74,7 +74,7 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container d-flex justify-content-between">
-        <p class="float-left">&copy; Milano group <?= date('Y') ?></p>
+        <p class="float-left">&copy; Company name <?= date('Y') ?></p>
         <p><a href="./">На главную</a></p>
     </div>
 </footer>
